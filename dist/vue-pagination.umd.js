@@ -168,7 +168,7 @@
 				return Math.ceil(this.items / this.itemsOnPage) ? Math.ceil(this.items / this.itemsOnPage) : 1;
 			},
 			_currentPage: function _currentPage() {
-				if (this.currentPage) return this.currentPage - 1;
+				if (this.currentPage) return this.prepareIndex(this.currentPage - 1);
 
 				return !this.invertPageOrder ? 0 : this._pages - 1;
 			},

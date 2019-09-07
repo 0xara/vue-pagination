@@ -165,7 +165,7 @@ var script$1 = {
 			if (this.currentPage) {
 				var index = this.prepareIndex(this.currentPage - 1);
 
-				if (index !== this.currentPage) {
+				if (index + 1 !== this.currentPage) {
 					this.selectPage(index);
 				}
 				return index;

@@ -64,7 +64,7 @@
 				if (this.currentPage) {
 					const index = this.prepareIndex(this.currentPage - 1);
 
-					if(index !== this.currentPage) {
+					if((index + 1) !== this.currentPage) {
 						this.selectPage(index);
                     }
 					return index;

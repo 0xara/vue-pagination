@@ -171,7 +171,7 @@
 				if (this.currentPage) {
 					var index = this.prepareIndex(this.currentPage - 1);
 
-					if (index !== this._currentPage) {
+					if (index !== this.currentPage) {
 						this.selectPage(index);
 					}
 					return index;

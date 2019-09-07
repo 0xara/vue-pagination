@@ -168,7 +168,14 @@
 				return Math.ceil(this.items / this.itemsOnPage) ? Math.ceil(this.items / this.itemsOnPage) : 1;
 			},
 			_currentPage: function _currentPage() {
-				if (this.currentPage) return this.prepareIndex(this.currentPage - 1);
+				if (this.currentPage) {
+					var index = this.prepareIndex(this.currentPage - 1);
+
+					if (index !== this._currentPage) {
+						this.selectPage(index);
+					}
+					return index;
+				}
 
 				return !this.invertPageOrder ? 0 : this._pages - 1;
 			},
@@ -293,6 +300,18 @@
 		methods: {
 			selectPage: function selectPage(index) {
 				this.$emit('select-page', this.prepareIndex(index) + 1);
+			},
+			prevPage: function prevPage() {
+				this.selectPage(this._currentPage - 1);
+			},
+			nextPage: function nextPage() {
+				this.selectPage(this._currentPage + 1);
+			},
+			getPagesCount: function getPagesCount() {
+				return this._pages;
+			},
+			getCurrentPage: function getCurrentPage() {
+				return this._currentPage;
 			},
 			prepareIndex: function prepareIndex(index) {
 				return index < 0 ? 0 : index < this._pages ? index : this._pages - 1;

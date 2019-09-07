@@ -61,7 +61,14 @@
     			return Math.ceil(this.items / this.itemsOnPage) ? Math.ceil(this.items / this.itemsOnPage) : 1
             },
             _currentPage() {
-				if (this.currentPage) return this.prepareIndex(this.currentPage - 1);
+				if (this.currentPage) {
+					const index = this.prepareIndex(this.currentPage - 1);
+
+					if(index !== this._currentPage) {
+						this.selectPage(index);
+                    }
+					return index;
+				}
 
 				return !this.invertPageOrder ? 0 : this._pages - 1;
             },
@@ -192,6 +199,18 @@
     	methods:{
     		selectPage(index) {
     			this.$emit('select-page',this.prepareIndex(index) + 1)
+            },
+			prevPage() {
+    			this.selectPage(this._currentPage - 1);
+            },
+			nextPage() {
+				this.selectPage(this._currentPage + 1);
+			},
+			getPagesCount() {
+    			return this._pages;
+            },
+			getCurrentPage() {
+    			return this._currentPage;
             },
             prepareIndex(index) {
     			return index < 0 ? 0 : (index < this._pages ? index : this._pages - 1);

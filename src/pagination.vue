@@ -3,7 +3,7 @@
     <ul :class="listStyle">
         <li v-if="prevText" :class="{disabled: disabled || _prevPage===_currentPage}">
             <span v-text="prevText" class="prev" :class="{current: _prevPage===_currentPage}" v-if="_prevPage===_currentPage || disabled">prev</span>
-            <a :href="hrefTextPrefix+(_prevPage+1)" class="prev" v-text="prevText" v-if="_prevPage!==_currentPage && !disabled" @click="selectPage(_prevPage)">prev</a>
+            <a :href="hrefTextPrefix ? hrefTextPrefix+(_prevPage+1) : 'javascript:void(0)'" class="prev" v-text="prevText" v-if="_prevPage!==_currentPage && !disabled" @click="selectPage(_prevPage)">prev</a>
         </li>
 
         <li-button v-for="pageIndex in _startEdges.indexes" :key="pageIndex" :index="pageIndex" :current="_currentPage" :disabled="disabled" :prefix="hrefTextPrefix" @select-page="selectPage(pageIndex)"></li-button>
@@ -18,7 +18,7 @@
 
         <li v-if="nextText" :class="{disabled: disabled || _nextPage===_currentPage}">
             <span v-text="nextText" class="next" :class="{current: _nextPage===_currentPage}" v-if="_nextPage===_currentPage || disabled">next</span>
-            <a :href="hrefTextPrefix+(_nextPage+1)" class="next" v-text="nextText" v-if="_nextPage!==_currentPage && !disabled" @click="selectPage(_nextPage)">next</a>
+            <a :href="hrefTextPrefix ? hrefTextPrefix+(_nextPage+1) : 'javascript:void(0)'" class="next" v-text="nextText" v-if="_nextPage!==_currentPage && !disabled" @click="selectPage(_nextPage)">next</a>
         </li>
     </ul>
 </template>

@@ -2,8 +2,8 @@
 <template>
     <ul :class="listStyle">
         <li v-if="prevText" :class="{disabled: disabled || _prevPage===_currentPage}">
-            <span v-text="prevText" class="prev" :class="{current: _prevPage===_currentPage}" v-if="_prevPage===_currentPage || disabled">prev</span>
-            <a :href="hrefTextPrefix ? hrefTextPrefix+(_prevPage+1) : 'javascript:void(0)'" class="prev" v-text="prevText" v-if="_prevPage!==_currentPage && !disabled" @click="selectPage(_prevPage)">prev</a>
+            <span v-text="_prevText" :class="[{current: _prevPage===_currentPage}, _prevClass]" v-if="_prevPage===_currentPage || disabled">prev</span>
+            <a :href="hrefTextPrefix ? hrefTextPrefix+(_prevPage+1) : 'javascript:void(0)'" :class="_prevClass" v-text="_prevText" v-if="_prevPage!==_currentPage && !disabled" @click="selectPage(_prevPage)">prev</a>
         </li>
 
         <li-button v-for="pageIndex in _startEdges.indexes" :key="pageIndex" :index="pageIndex" :current="_currentPage" :disabled="disabled" :prefix="hrefTextPrefix" @select-page="selectPage(pageIndex)"></li-button>
@@ -17,8 +17,8 @@
         <li-button v-for="pageIndex in _endEdges.indexes" :key="pageIndex" :index="pageIndex" :current="_currentPage" :disabled="disabled" :prefix="hrefTextPrefix" @select-page="selectPage(pageIndex)"></li-button>
 
         <li v-if="nextText" :class="{disabled: disabled || _nextPage===_currentPage}">
-            <span v-text="nextText" class="next" :class="{current: _nextPage===_currentPage}" v-if="_nextPage===_currentPage || disabled">next</span>
-            <a :href="hrefTextPrefix ? hrefTextPrefix+(_nextPage+1) : 'javascript:void(0)'" class="next" v-text="nextText" v-if="_nextPage!==_currentPage && !disabled" @click="selectPage(_nextPage)">next</a>
+            <span v-text="_nextText" class="next" :class="[{current: _nextPage===_currentPage}, _nextClass]" v-if="_nextPage===_currentPage || disabled">next</span>
+            <a :href="hrefTextPrefix ? hrefTextPrefix+(_nextPage+1) : 'javascript:void(0)'" :class="_nextClass" v-text="_nextText" v-if="_nextPage!==_currentPage && !disabled" @click="selectPage(_nextPage)">next</a>
         </li>
     </ul>
 </template>
@@ -192,7 +192,23 @@
 
 			disabled() {
     			return this.disable;
-            }
+            },
+
+            _nextText() {
+    			return !this.invertPageOrder ? this.nextText : this.prevText;
+            },
+
+			_prevText() {
+				return !this.invertPageOrder ? this.prevText : this.nextText;
+			},
+
+			_nextClass() {
+				return !this.invertPageOrder ? 'next' : 'prev';
+			},
+
+			_prevClass() {
+				return !this.invertPageOrder ? 'prev' : 'next';
+			}
         },
 
 

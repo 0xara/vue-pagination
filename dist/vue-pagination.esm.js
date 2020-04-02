@@ -288,6 +288,18 @@ var script$1 = {
 		},
 		disabled: function disabled() {
 			return this.disable;
+		},
+		_nextText: function _nextText() {
+			return !this.invertPageOrder ? this.nextText : this.prevText;
+		},
+		_prevText: function _prevText() {
+			return !this.invertPageOrder ? this.prevText : this.nextText;
+		},
+		_nextClass: function _nextClass() {
+			return !this.invertPageOrder ? 'next' : 'prev';
+		},
+		_prevClass: function _prevClass() {
+			return !this.invertPageOrder ? 'prev' : 'next';
 		}
 	},
 
@@ -347,7 +359,7 @@ styleInject(css);
 var __vue_script__$1 = script$1;
 /* template */
 var __vue_render__$1 = function __vue_render__() {
-  var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('ul', { class: _vm.listStyle }, [_vm.prevText ? _c('li', { class: { disabled: _vm.disabled || _vm._prevPage === _vm._currentPage } }, [_vm._prevPage === _vm._currentPage || _vm.disabled ? _c('span', { staticClass: "prev", class: { current: _vm._prevPage === _vm._currentPage }, domProps: { "textContent": _vm._s(_vm.prevText) } }, [_vm._v("prev")]) : _vm._e(), _vm._v(" "), _vm._prevPage !== _vm._currentPage && !_vm.disabled ? _c('a', { staticClass: "prev", attrs: { "href": _vm.hrefTextPrefix ? _vm.hrefTextPrefix + (_vm._prevPage + 1) : 'javascript:void(0)' }, domProps: { "textContent": _vm._s(_vm.prevText) }, on: { "click": function click($event) {
+  var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('ul', { class: _vm.listStyle }, [_vm.prevText ? _c('li', { class: { disabled: _vm.disabled || _vm._prevPage === _vm._currentPage } }, [_vm._prevPage === _vm._currentPage || _vm.disabled ? _c('span', { class: [{ current: _vm._prevPage === _vm._currentPage }, _vm._prevClass], domProps: { "textContent": _vm._s(_vm._prevText) } }, [_vm._v("prev")]) : _vm._e(), _vm._v(" "), _vm._prevPage !== _vm._currentPage && !_vm.disabled ? _c('a', { class: _vm._prevClass, attrs: { "href": _vm.hrefTextPrefix ? _vm.hrefTextPrefix + (_vm._prevPage + 1) : 'javascript:void(0)' }, domProps: { "textContent": _vm._s(_vm._prevText) }, on: { "click": function click($event) {
         return _vm.selectPage(_vm._prevPage);
       } } }, [_vm._v("prev")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm._l(_vm._startEdges.indexes, function (pageIndex) {
     return _c('li-button', { key: pageIndex, attrs: { "index": pageIndex, "current": _vm._currentPage, "disabled": _vm.disabled, "prefix": _vm.hrefTextPrefix }, on: { "select-page": function selectPage($event) {
@@ -365,7 +377,7 @@ var __vue_render__$1 = function __vue_render__() {
     return _c('li-button', { key: pageIndex, attrs: { "index": pageIndex, "current": _vm._currentPage, "disabled": _vm.disabled, "prefix": _vm.hrefTextPrefix }, on: { "select-page": function selectPage($event) {
           return _vm.selectPage(pageIndex);
         } } });
-  }), _vm._v(" "), _vm.nextText ? _c('li', { class: { disabled: _vm.disabled || _vm._nextPage === _vm._currentPage } }, [_vm._nextPage === _vm._currentPage || _vm.disabled ? _c('span', { staticClass: "next", class: { current: _vm._nextPage === _vm._currentPage }, domProps: { "textContent": _vm._s(_vm.nextText) } }, [_vm._v("next")]) : _vm._e(), _vm._v(" "), _vm._nextPage !== _vm._currentPage && !_vm.disabled ? _c('a', { staticClass: "next", attrs: { "href": _vm.hrefTextPrefix ? _vm.hrefTextPrefix + (_vm._nextPage + 1) : 'javascript:void(0)' }, domProps: { "textContent": _vm._s(_vm.nextText) }, on: { "click": function click($event) {
+  }), _vm._v(" "), _vm.nextText ? _c('li', { class: { disabled: _vm.disabled || _vm._nextPage === _vm._currentPage } }, [_vm._nextPage === _vm._currentPage || _vm.disabled ? _c('span', { staticClass: "next", class: [{ current: _vm._nextPage === _vm._currentPage }, _vm._nextClass], domProps: { "textContent": _vm._s(_vm._nextText) } }, [_vm._v("next")]) : _vm._e(), _vm._v(" "), _vm._nextPage !== _vm._currentPage && !_vm.disabled ? _c('a', { class: _vm._nextClass, attrs: { "href": _vm.hrefTextPrefix ? _vm.hrefTextPrefix + (_vm._nextPage + 1) : 'javascript:void(0)' }, domProps: { "textContent": _vm._s(_vm._nextText) }, on: { "click": function click($event) {
         return _vm.selectPage(_vm._nextPage);
       } } }, [_vm._v("next")]) : _vm._e()]) : _vm._e()], 2);
 };
